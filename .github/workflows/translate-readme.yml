@@ -1,0 +1,22 @@
+name: 自动翻译README
+
+on:
+  push:
+    branches:
+      - main        # 或 master，根据你的主分支名称修改
+    paths:
+      - 'README.md'  # 仅在README.md变更时触发
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 获取完整git历史
+
+      - name: 设置Node.js环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
